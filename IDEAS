@@ -1,12 +1,38 @@
+SMART WC
+smart mirror, wc bril
+
+
 location based personal e-comm (canistro de bolso)
 sex hero (love hero)
-smart mirror
-wc bril
 moviment detect battle
 
 smart toilet
+    Reasons
+    1. Strong perfum smell
+    2. Dirty toiled seat
+    3. Dirty floor
+    4. Dirty toiled
+    5. Strong stink
+    6. Toiled seat always up
+
+    Flow
+    1. WC is empty and closed, YAY images and info on door's screen
+    2. Ultrasonic sensor detects possible user
+    3. Camera detects face and take picture which is shown on screen
+    4. Face recognition detects user as known user or new user
+    5. New user gets presented with accept terms while opening door
+    6. Photo is taken inside the empty toiled with current state
+    7. As door opens, ambient music from deezer is playing
+    8. In the toiled air quality sensor detects when to spray perfum
+    9. Water sensor detects if there is pee on seat
+    10. Ultrasonic sensor detects if user washed hands
+    11. After user leaves the toiled photo is taken with current state
+    12. Toiled seat is set back down
+    13. After every session evaluation of usage is generated for this user
+    14. User information might show on door screen, with dirtyness rank
+
     - pee detector
     - fart detector
     - toilet condictions after use
 
-keep away clothing
+keep away/distance clothing
