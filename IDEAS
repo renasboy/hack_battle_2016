@@ -1,12 +1,57 @@
+SMART WC
+smart mirror, wc bril
+
+
 location based personal e-comm (canistro de bolso)
 sex hero (love hero)
-smart mirror
-wc bril
 moviment detect battle
+keep away/distance clothing
 
 smart toilet
-    - pee detector
-    - fart detector
-    - toilet condictions after use
 
-keep away clothing
+    Reasons
+        1. Strong perfum smell or Strong stink
+        2. Dirty floor
+        3. Dirty toiled seat
+        4. Dirty toiled vase
+        5. Toiled seat always up
+        6. Washing your hands is good for you and for your frineds
+        7. People forcing the door handle when you are concentrating on your shit
+        8. Knowing who is using before gives you a chance to avoid any inconvenience
+        8. Maintenace is cheeper when users keep it clean
+
+    Flow
+        1. WC is empty, closed, door dislays users rankings and some YAY images
+
+        2. Ultrasonic sensor in the door detects possible user
+
+        3. Camera detects face and take picture which is shown on screen
+
+        4. Face recognition detects user as known user or new user
+
+        5. New user gets presented with accept terms while opening door
+
+        6. Before door is open a photo is taken inside the empty toiled before the use
+
+        7. As door opens, ambient music from deezer start playing
+
+        8. Door display the current user rating
+        
+        9. Internal sensors starts data collection:
+
+            a. In the toiled air quality sensor detects when to spray perfum
+
+            b. "Raindrop" sensor detects if user did pee on the toilet seat
+
+            c. "Gas" sensors detects  really   "Raindrop" sensor detects if user did pee on the toilet seat
+            
+            d: Ultrasonic sensor detects if user washed hands
+            
+            e: Ultrasonic sensor detects if the toiled seat was set back down
+            
+        10. When user leaves the toiled another photo is taken and compared with the photo taken before the use
+    
+        11. After every session an evaluation of usage is generated and the last user ranking is updated
+    
+        12. User information might show on door screen, with dirtyness and cleanliness ranks, health tips
+
