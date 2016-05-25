@@ -5,19 +5,33 @@
 </head>
 <body>
 
-<div id="body"></div>
+	<div id="body"></div>
+	<div id="users"></div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.6/socket.io.js"></script>
-<script>
-  var socket = io.connect('http://localhost:3030');
-	  socket.on('connect', function (data) {
-  });
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.6/socket.io.js"></script>
+	<script>
+		var socket = io.connect('http://localhost:3030');
+		socket.on('connect', function (data) {
+			console.log('connected');
+		});
 
-  socket.on('updateData', function(data) {
-		console.log(data);
-		document.getElementById('body').innerHTML = data;
-   });
-</script>
+		socket.emit('userInfo', "I'm new user");
+
+		socket.on('updateData', function(data) {
+			console.log(data);
+			document.getElementById('body').innerHTML = data;
+		});
+
+		socket.on('updateUsers', function(data) {
+			console.log(data);
+			document.getElementById('users').innerHTML = data;
+		});
+
+		socket.on('disconnect'), function() {
+			socket.emit('userInfo', "Out");
+		}
+
+	</script>
 
 </body>
 </html>

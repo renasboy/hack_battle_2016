@@ -23,17 +23,25 @@ app.get('/', function(req, res, next) {
 
 server.listen(3030);
 
+
+function StartServerAws() {
+}
+
+StartServerAws.prototype.getData = function () {
+};
+
 var count = 0,
-    dataSend = {};
+    serverAws = {};
 
 io.on('connection', function(client) {  
     count = count + 1;
     console.log('Client connected...');
-    io.emit('updateUsers', data);
+    io.emit('updateUsers', count);
+    console.log(count);
 });
 
-io.on('userInfo', function(data) {
-  console.log(data);
+io.on('userInfo', function(userInfo) {
+  console.log(userInfo);
 });
 
 var getData = function(data) {
@@ -99,10 +107,11 @@ client.on('uplink', uplink => {
   // Send the message to AWS IoT
   console.log('%s: Sending message: %j', uplink.devEUI, data);
   device.publish('up', JSON.stringify(data));
+  serverAws = JSON.stringify(data);
 
 
 });
 
-client.connect();
+// client.connect();
 
-module.exports = dataSend;
+module.exports = StartServerAws;
