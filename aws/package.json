@@ -1,0 +1,26 @@
+{
+  "name": "hack_battle_2016_aws",
+  "version": "1.0.0",
+  "description": "Hack Battle 2016",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/re2005/hack_battle_2016.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/re2005/hack_battle_2016/issues"
+  },
+  "homepage": "https://github.com/re2005/hack_battle_2016#readme",
+  "dependencies": {
+    "aws-iot-device-sdk": "^1.0.12",
+    "express": "^4.13.4",
+    "npm": "^3.9.2",
+    "socket.io": "^1.4.6",
+    "ttn": "^1.0.0"
+  }
+}
