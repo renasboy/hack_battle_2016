@@ -5,47 +5,30 @@ const ttn = require('ttn');
 const awsiot = require('aws-iot-device-sdk');
 
 const mqttBroker = 'staging.thethingsnetwork.org'
-const appEUI = '70B3D57ED00001FC';
-const appAccessKey = 'xKr2JuF7718h7Bn/6HIJ97aay3hYiLeniN9RF5RrfwA=';
+const appEUI = '70B3D57ED00001FF';
+const appAccessKey = 'JdUxQPNUjzIxnuENhZeso9NOMpctclDYkNTbRxIjaqU=';
 const keyPath = './devices';
 const region = 'eu-west-1';
 
 
-var express = require('express');  
-var app = express();  
-var server = require('http').createServer(app);
-var io = require('socket.io')(server);
-
-// app.use(express.static(__dirname + '/bower_components'));  
-app.get('/', function(req, res, next) {  
-    res.sendFile(__dirname + '/index.html');
-});
-
-server.listen(3030);
-
-
-function StartServerAws() {
+function GetService() {
 }
 
-StartServerAws.prototype.getData = function () {
+GetService.prototype.startService = function () {
+  client.connect();
 };
 
-var count = 0,
-    serverAws = {};
 
-io.on('connection', function(client) {  
-    count = count + 1;
-    console.log('Client connected...');
-    io.emit('updateUsers', count);
-    console.log(count);
-});
+// io.on('connection', function(client) {  
+//     console.log('Client connected...');
+// });
 
-io.on('userInfo', function(userInfo) {
-  console.log(userInfo);
-});
+// io.on('userInfo', function(userInfo) {
+//   console.log(userInfo);
+// });
 
 var getData = function(data) {
-  io.emit('updateData', data);
+  // io.emit('updateData', data);
   // var random = Math.random().toString(36).substring(7);
   // console.log(random);
 };
@@ -109,9 +92,6 @@ client.on('uplink', uplink => {
   device.publish('up', JSON.stringify(data));
   serverAws = JSON.stringify(data);
 
-
 });
 
-// client.connect();
-
-module.exports = StartServerAws;
+module.exports = GetService;
