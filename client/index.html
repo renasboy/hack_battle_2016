@@ -44,6 +44,12 @@
             <div id="wc-tune">
                 <audio name="player" id="player" src="/assets/mp3/wc_tune.mp3" controls></audio>
             </div>
+
+            <a href="javascript:LeaveWC()">LEAVE WC</a>
+        </div>
+
+        <div id="step-4">
+            RESULTS
         </div>
 
 	</div>
@@ -76,6 +82,13 @@
 			document.getElementById('step-2').style.display = 'none';
 			document.getElementById('step-3').style.display = 'block';
             document.getElementById('player').play()
+		}
+
+		var LeaveWC = function() {
+			console.log('Leave WC');
+			document.getElementById('step-3').style.display = 'none';
+			document.getElementById('step-4').style.display = 'block';
+            document.getElementById('player').pause()
 		}
 
 		socket.on('connect', function (data) {
