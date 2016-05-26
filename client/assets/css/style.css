@@ -5,6 +5,10 @@ body, html {
 body * {
 	margin: 0;
 	padding: 0;
+	color: #0986fb;
+}
+a:hover {
+	text-decoration: none;
 }
 #step-1 {
 	text-align: center;
@@ -73,15 +77,42 @@ h2 {
 
 #step-3 {
     display: none;
+    padding-top: 100px;
 }
 
 .hidden {
 	display: none;
 }
+
 #player {
     display: none;
 }
 
 #step-4 {
     display: none;
+}
+
+#gas {
+	background: url('/assets/img/gas.png') no-repeat center top;
+	background-size: 60%;
+	height: 400px
+}
+#gas-value {
+	position: absolute;
+}
+
+#moisture {
+	background: url('/assets/img/pee.png') no-repeat center top;
+	background-size: 60%;
+	height: 400px
+}
+
+#moisture-value {
+
+}
+
+#presence {
+	background: url('/assets/img/hands.png') no-repeat center top;
+	background-size: 60%;
+	height: 400px
 }

@@ -10,7 +10,7 @@
 <div content-fluid>
 	<div class="row">
 
-		<div id="step-1" class="col-xs-12 text-center hidden">
+		<div id="step-1" class="col-xs-12 text-center">
 			<img src="/assets/img/logo.png">
             <div id="step-1-1">
                 <h2>Remember to wash your hands before you leave.</h2>
@@ -21,24 +21,23 @@
 		</div>
 
 		<div id="step-2" class="col-xs-12">
-			<div id="loading">
-				<h1>Detecting user</h1>
-			</div>
-			<div class="">
-				<img src="http://172.16.39.100:8000/frame.jpg">
-	            <a href="javascript:IAgree();">I AGREE</a>
+			<div>
+				<a href="javascript:IAgree();">
+					<img src="http://172.16.39.100:8000/frame.jpg" id="user-image">
+	            	<h1>OPEN DOOR</h1>
+	            </a>
 			</div>
 		</div>
 
         <div id="step-3">
             <div id="gas" class="col-xs-4">
-                gas: <span id="gas-value"></span>
+                <span id="gas-value"></span>
             </div>
             <div id="moisture" class="col-xs-4">
-                moisture: <span id="moisture-value"></span>
+                <span id="moisture-value"></span>
             </div>
             <div id="presence" class="col-xs-4">
-                presence: <span id="presence-value"></span>
+                <span id="presence-value"></span>
             </div>
 
             <div id="wc-tune">
@@ -57,8 +56,12 @@
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.6/socket.io.js"></script>
 	<script>
+
 		var socket = io.connect('http://localhost:3030');
 
+<<<<<<< HEAD
+		var model = {"gas":32, "moisture": 231, "presence": true};
+=======
 		var model = {"gas":null, "moisture": null, "presence": null};
         var step11 = 'none';
         var step12 = 'block';
@@ -69,6 +72,7 @@
             step11 = step12;
             step12 = toggle;
         }, 3000);
+>>>>>>> origin/master
 
 		var updateUserStatus = function() {
 			document.getElementById('gas-value').innerHTML = model['gas'];
@@ -120,6 +124,13 @@
 		socket.on('disconnect' , function() {
 			socket.emit('updateUserStatus', "disconect");
 		});
+
+		var mock = function () {
+			 
+		}
+
+		var gas = document.getElementById("gas-value");
+		gas.style.transform = "rotate(7deg)";
 
 
 	</script>
