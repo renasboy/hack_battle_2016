@@ -2,7 +2,6 @@
 Hack Battle 2016
 
 # Smart WC
-
 Improve your most private experience when you are off home
 
 #Reasons
