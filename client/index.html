@@ -3,25 +3,34 @@
 <head>
 	<title></title>
 	 <link href="http://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+	 <link href="/assets/css/style.css" rel="stylesheet">
 </head>
 <body>
 
 <div content-fluid>
 	<div class="row">
 
-		<div id="step_1" class="col-xs-12">
-			<img src="asets/img/logo.png">
+		<div id="step-1" class="col-xs-12">
+			<img src="/assets/img/logo.png">
 		</div>
 
-		<div id="gas" class="col-xs-4">
-			gas: <span id="gas-value"></span>
+		<div id="step-2" class="col-xs-12">
+			<img src="http://172.16.39.100:8000/frame.jpg">
+            <a href="javascript:IAgree();">I AGREE</a>
 		</div>
-		<div id="moisture" class="col-xs-4">
-			moisture: <span id="moisture-value"></span>
-		</div>
-		<div id="presence" class="col-xs-4">
-			presence: <span id="presence-value"></span>
-		</div>
+
+        <div id="step-3">
+            <div id="gas" class="col-xs-4">
+                gas: <span id="gas-value"></span>
+            </div>
+            <div id="moisture" class="col-xs-4">
+                moisture: <span id="moisture-value"></span>
+            </div>
+            <div id="presence" class="col-xs-4">
+                presence: <span id="presence-value"></span>
+            </div>
+        </div>
+
 	</div>
 </div>
 
@@ -29,7 +38,7 @@
 	<script>
 
 		var socket = io.connect('http://localhost:3030');
-		
+
 		var model = {"gas":null, "moisture": null, "presence": null};
 
 		var updateUserStatus = function() {
@@ -38,11 +47,23 @@
 			document.getElementById('presence-value').innerHTML = model['presence'];
 		}
 
+		var IAgree = function() {
+			console.log('I Agree');
+			document.getElementById('step-2').style.display = 'none';
+			document.getElementById('step-3').style.display = 'block';
+		}
+
 		socket.on('connect', function (data) {
 			console.log('connected');
 		});
 
-		socket.on('updateGas', function(data) {			
+		socket.on('closeEnough', function(data) {
+			console.log('Its close enough');
+			document.getElementById('step-1').style.display = 'none';
+			document.getElementById('step-2').style.display = 'block';
+		});
+
+		socket.on('updateGas', function(data) {
 			model['gas']= data;
 			console.log(model['gas']);
 			updateUserStatus();

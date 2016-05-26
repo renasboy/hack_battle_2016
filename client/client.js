@@ -4,21 +4,15 @@ var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var path = require('path');
 
-io.on('connection', function(client) {  
+io.on('connection', function(client) {
     console.log('Client connected...');
 });
 
-// var publicDir = path.join(__dirname, 'assets');
-// console.log(publicDir);
-// app.use(express.static(publicDir));
-
-// app.use(express.static(__dirname + '/assets'));
-
-app.get('/', function(req, res, next) {  
+app.get('/', function(req, res, next) {
     res.sendFile(__dirname + '/index.html');
 });
 
-app.use(express.static(__dirname + 'assets'));
+app.use('/assets', express.static('assets'));
 
 server.listen(3030);
 
@@ -35,6 +29,8 @@ client.on('uplink', function (up) {
         // close the client:
         client.end()
 
+        io.emit('closeEnough', true);
+
         var appEUI = '70B3D57ED00001FF';
         var accessKey = 'JdUxQPNUjzIxnuENhZeso9NOMpctclDYkNTbRxIjaqU=';
         var client2 = new ttn.Client('staging.thethingsnetwork.org', appEUI, accessKey);
@@ -50,7 +46,7 @@ client.on('uplink', function (up) {
             else if ('presence' in up.fields) {
               io.emit('updatePresence', up.fields['presence']);
             }
-            
+
         });
     }
 });
