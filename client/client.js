@@ -21,11 +21,12 @@ var appEUI = '70B3D57ED00001FC';
 var accessKey = 'xKr2JuF7718h7Bn/6HIJ97aay3hYiLeniN9RF5RrfwA=';
 var client = new ttn.Client('staging.thethingsnetwork.org', appEUI, accessKey);
 
-var distance_threshold = 80;
+var max_distance_threshold = 80;
+var min_distance_threshold = 3;
 
 client.on('uplink', function (up) {
     console.log(up.fields)
-    if (up.fields['distance'] < distance_threshold) {
+    if (up.fields['distance'] < max_distance_threshold && up.fields['distance'] > min_distance_threshold) {
         // close the client:
         client.end()
 
