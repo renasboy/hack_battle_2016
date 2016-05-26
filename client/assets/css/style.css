@@ -33,7 +33,7 @@ a:hover {
 }
 #step-1-1:before {
 	content: '';
-	background: url('/assets/img/washing-hands.jpg');
+	background: url('/assets/img/washing-hands.jpg') no-repeat center top;
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -45,8 +45,9 @@ a:hover {
 }
 
 h2 {
-    background-color: #0986fb;
+    background-color: rgba(9, 134, 251, 0.6 );
     color: #FFFFFF;
+    padding: 20px 0; 
 }
 
 #step-1-1 {
@@ -59,7 +60,7 @@ h2 {
 
 #step-1-2:before {
 	content: '';
-	background: url('/assets/img/clean-toilet.jpg');
+	background: url('/assets/img/clean-toilet.jpg') no-repeat center top;
 	position: absolute;
 	top: 0;
 	right: 0;
