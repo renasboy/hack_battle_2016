@@ -23,20 +23,22 @@
 		<div id="step-2" class="col-xs-12">
 			<div>
 				<a href="javascript:IAgree();">
-					<img src="http://172.16.39.100:8000/frame.jpg" id="user-image">
+				<img src="/assets/img/joia.jpg" id="user-image">
+					<!-- <img src="http://172.16.39.100:8000/frame.jpg" id="user-image"> -->
+	            	<img src="/assets/img/opendoor.jpg" width="200px">
 	            	<h1>OPEN DOOR</h1>
 	            </a>
 			</div>
 		</div>
 
         <div id="step-3">
+            <div id="moisture" class="col-xs-4">
+            	<span id="moisture-value"></span>
+            </div>
             <div id="gas" class="col-xs-4">
                 <span id="gas-value">
                 	<img src="/assets/img/pointer.png">
                 </span>
-            </div>
-            <div id="moisture" class="col-xs-4">
-            	<span id="moisture-value"></span>
             </div>
             <div id="presence" class="col-xs-4">
                 <span id="presence-value"></span>
@@ -66,7 +68,7 @@
 
 		var socket = io.connect('http://localhost:3030');
 
-		var model = {"gas":32, "moisture": 231, "presence": true};
+		var model = {"gas":32, "moisture": 231, "presence": 100};
 
         var step11 = 'none';
         var step12 = 'block';
@@ -96,7 +98,12 @@
 
 
 		var updateUserStatus = function() {
-			gas.innerHTML = model['gas'];
+
+			var rotateValue = model['gas'];
+			console.log(rotateValue);
+        	rotate = "rotate("+rotateValue+"deg)";
+        	gas.style.transform = rotate;
+
 			moisture.innerHTML = model['moisture'];
 			if (presence === true) {
 				presence.style.backgroundImage = "url('hands.png')";
@@ -155,22 +162,24 @@
 
 
 
-        var intervalGas = setInterval(function () {
-        	rotate = "rotate("+getRamdon(-30, 30)+"deg)";
-        	gas.style.transform = rotate;
-        }, 600);
-		// GAS
-
         var intervalMoisture = setInterval(function () {
         	height = getRamdon(10, 90)+"px";
         	moisture.style.height = height;
         	moisture.innerHTML = model['moisture'];
         }, 500);
 
+
+  //       var intervalGas = setInterval(function () {
+  //       	rotate = "rotate("+getRamdon(-30, 30)+"deg)";
+  //       	gas.style.transform = rotate;
+  //       }, 600);
+		// // GAS
+
+
         var startPresence = function(){
 	        var intervalPresence = setInterval(function () {
 	        	presence.style.backgroundImage = "url('/assets/img/hands.png')";
-	        	clearInterval(intervalGas);
+	        	// clearInterval(intervalGas);
 	        	clearInterval(intervalMoisture);
 	        }, 4000);
         }

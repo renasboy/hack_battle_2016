@@ -146,3 +146,9 @@ h2 {
 	font-size: 30px;
 	padding-top: 200px 0; 
 }
+
+#user-image {
+	margin-bottom: 50px;
+	display: block;
+	margin: auto;
+}
