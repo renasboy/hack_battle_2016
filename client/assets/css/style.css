@@ -81,7 +81,6 @@ h2 {
     padding-top: 100px;
 }
 
-
 .hidden {
 	display: none;
 }
@@ -90,7 +89,9 @@ h2 {
     display: none;
 }
 
-
+#step-4 {
+    display: none;
+}
 
 #gas {
 	background: url('/assets/img/gas.png') no-repeat center top;
