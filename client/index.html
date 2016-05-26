@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	 <link href="http://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div content-fluid>
+	<div class="row">
+
+		<div id="step_1" class="col-xs-12">
+			<img src="asets/img/logo.png">
+		</div>
+
+		<div id="gas" class="col-xs-4">
+			gas: <span id="gas-value"></span>
+		</div>
+		<div id="moisture" class="col-xs-4">
+			moisture: <span id="moisture-value"></span>
+		</div>
+		<div id="presence" class="col-xs-4">
+			presence: <span id="presence-value"></span>
+		</div>
+	</div>
+</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.6/socket.io.js"></script>
+	<script>
+
+		var socket = io.connect('http://localhost:3030');
+		
+		var model = {"gas":null, "moisture": null, "presence": null};
+
+		var updateUserStatus = function() {
+			document.getElementById('gas-value').innerHTML = model['gas'];
+			document.getElementById('moisture-value').innerHTML = model['moisture'];
+			document.getElementById('presence-value').innerHTML = model['presence'];
+		}
+
+		socket.on('connect', function (data) {
+			console.log('connected');
+		});
+
+		socket.on('updateGas', function(data) {			
+			model['gas']= data;
+			console.log(model['gas']);
+			updateUserStatus();
+		});
+		socket.on('updateMoisture', function(data) {
+			model['moisture'] = data;
+			console.log("moisture: ",model['moisture']);
+			updateUserStatus();
+		});
+		socket.on('updatePresence', function(data) {
+			model['presence'] = data;
+			console.log("presence: ", model['presence']);
+			updateUserStatus();
+		});
+
+		socket.on('disconnect' , function() {
+			socket.emit('updateUserStatus', "disconect");
+		});
+
+
+	</script>
+
+</body>
+</html>

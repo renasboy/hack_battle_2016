@@ -1,5 +1,28 @@
-var ttn = require('ttn');
+var express = require('express');
+var app = express();
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
+var path = require('path');
 
+io.on('connection', function(client) {  
+    console.log('Client connected...');
+});
+
+// var publicDir = path.join(__dirname, 'assets');
+// console.log(publicDir);
+// app.use(express.static(publicDir));
+
+// app.use(express.static(__dirname + '/assets'));
+
+app.get('/', function(req, res, next) {  
+    res.sendFile(__dirname + '/index.html');
+});
+
+app.use(express.static(__dirname + 'assets'));
+
+server.listen(3030);
+
+var ttn = require('ttn');
 var appEUI = '70B3D57ED00001FC';
 var accessKey = 'xKr2JuF7718h7Bn/6HIJ97aay3hYiLeniN9RF5RrfwA=';
 var client = new ttn.Client('staging.thethingsnetwork.org', appEUI, accessKey);
@@ -18,6 +41,16 @@ client.on('uplink', function (up) {
 
         client2.on('uplink', function (up) {
             console.log(up.fields)
+            if ('gas' in up.fields) {
+              io.emit('updateGas', up.fields['gas']);
+            }
+            else if ('moisture' in up.fields) {
+              io.emit('updateMoisture', up.fields['moisture']);
+            }
+            else if ('presence' in up.fields) {
+              io.emit('updatePresence', up.fields['presence']);
+            }
+            
         });
     }
 });
