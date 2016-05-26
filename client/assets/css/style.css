@@ -38,8 +38,14 @@ body * {
     display: none;
 }
 
+<<<<<<< HEAD
 
 
 .hidden {
 	display: none;
 }
+=======
+#player {
+    display: none;
+}
+>>>>>>> origin/master
