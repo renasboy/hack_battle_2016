@@ -1,14 +1,45 @@
+body, html {
+	height: 100%;
+	width: 100%;
+}
+body * {
+	margin: 0;
+	padding: 0;
+}
 #step-1 {
-    display: block;
-    background: url('/assets/img/washing-hands.jpg');
-    width: 1920px;
-    height: 1080px;
+	text-align: center;
+    height: 100%;
+    min-height: 900px;
+    overflow: hidden;
+}
+#step-1 img {
+	width: 300px;
+	padding: 200px 0;
+}
+#step-1:before {
+	content: '';
+	background: url('/assets/img/washing-hands.jpg');
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	z-index: -1;
+	height: 1600px;
+	opacity: 0.5;
 }
 
 #step-2 {
+	text-align: center;
     display: none;
 }
 
 #step-3 {
     display: none;
+}
+
+
+
+.hidden {
+	display: none;
 }
