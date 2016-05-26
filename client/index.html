@@ -5,12 +5,12 @@
 	 <link href="http://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 	 <link href="/assets/css/style.css" rel="stylesheet">
 </head>
-<body>
+<body onkeypress="return myKeyPress(event)">
 
 <div content-fluid>
 	<div class="row">
 
-		<div id="step-1" class="col-xs-12 text-center hidden">
+		<div id="step-1" class="col-xs-12 text-center">
 			<img src="/assets/img/logo.png">
             <div id="step-1-1">
                 <h2>Remember to wash your hands before you leave.</h2>
@@ -44,12 +44,14 @@
 
             <div id="wc-tune">
                 <audio name="player" id="player" src="/assets/mp3/wc_tune.mp3" controls></audio>
+                <audio name="pee_player" id="pee-player" src="/assets/mp3/pee_noise.mp3" controls></audio>
+                <audio name="fart_player" id="fart-player" src="/assets/mp3/fart_noise.mp3" controls></audio>
             </div>
 
             <div class="text-center">
             	<a href="javascript:LeaveWC()">LEAVE WC</a>
             </div>
-            
+
         </div>
 
         <div id="step-4" class="text-center">
@@ -76,10 +78,22 @@
             step12 = toggle;
         }, 3000);
 
-
 		var gas = document.getElementById("gas-value");
 		var moisture = document.getElementById("moisture-value");
 		var presence = document.getElementById('presence');
+
+        document.onkeypress = function(evt) {
+            evt = evt || window.event;
+            var charCode = evt.keyCode || evt.which;
+            var charStr = String.fromCharCode(charCode);
+            if (charStr == 'p') {
+                document.getElementById('pee-player').play()
+            }
+            else if (charStr == 'f') {
+                document.getElementById('fart-player').play()
+            }
+        };
+
 
 		var updateUserStatus = function() {
 			gas.innerHTML = model['gas'];
@@ -91,6 +105,7 @@
 
 		var IAgree = function() {
 			console.log('I Agree');
+			startPresence();
 			document.getElementById('step-1').style.display = 'none';
 			document.getElementById('step-2').style.display = 'none';
 			document.getElementById('step-3').style.display = 'block';
@@ -152,12 +167,13 @@
         	moisture.innerHTML = model['moisture'];
         }, 500);
 
-        var intervalPresence = setInterval(function () {
-        	presence.style.backgroundImage = "url('/assets/img/hands.png')";
-        	clearInterval(intervalGas);
-        	clearInterval(intervalMoisture);
-        }, 4000);
-
+        var startPresence = function(){
+	        var intervalPresence = setInterval(function () {
+	        	presence.style.backgroundImage = "url('/assets/img/hands.png')";
+	        	clearInterval(intervalGas);
+	        	clearInterval(intervalMoisture);
+	        }, 4000);
+        }
 
 	</script>
 

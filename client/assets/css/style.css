@@ -77,7 +77,7 @@ h2 {
 }
 
 #step-3 {
-    /*display: none;*/
+    display: none;
     padding-top: 100px;
 }
 
@@ -88,7 +88,7 @@ h2 {
 	text-align: center;
 }
 
-#player {
+#player, #pee-player, #fart-player {
     display: none;
 }
 
