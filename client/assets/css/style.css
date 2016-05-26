@@ -85,7 +85,7 @@ h2 {
 	display: none;
 }
 
-#player {
+#player, #pee-player, #fart-player {
     display: none;
 }
 
