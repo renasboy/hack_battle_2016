@@ -59,10 +59,7 @@
 
 		var socket = io.connect('http://localhost:3030');
 
-<<<<<<< HEAD
 		var model = {"gas":32, "moisture": 231, "presence": true};
-=======
-		var model = {"gas":null, "moisture": null, "presence": null};
         var step11 = 'none';
         var step12 = 'block';
         var interval = setInterval(function () {
@@ -72,7 +69,7 @@
             step11 = step12;
             step12 = toggle;
         }, 3000);
->>>>>>> origin/master
+
 
 		var updateUserStatus = function() {
 			document.getElementById('gas-value').innerHTML = model['gas'];
