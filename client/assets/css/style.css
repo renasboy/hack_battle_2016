@@ -18,7 +18,44 @@ body * {
 }
 #step-1:before {
 	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	z-index: -1;
+	height: 1600px;
+	opacity: 0.5;
+}
+#step-1-1:before {
+	content: '';
 	background: url('/assets/img/washing-hands.jpg');
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	z-index: -1;
+	height: 1600px;
+	opacity: 0.5;
+}
+
+h2 {
+    background-color: #0986fb;
+    color: #FFFFFF;
+}
+
+#step-1-1 {
+    display: block;
+}
+
+#step-1-2 {
+    display: none;
+}
+
+#step-1-2:before {
+	content: '';
+	background: url('/assets/img/clean-toilet.jpg');
 	position: absolute;
 	top: 0;
 	right: 0;
