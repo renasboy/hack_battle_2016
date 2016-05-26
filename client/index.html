@@ -29,6 +29,10 @@
             <div id="presence" class="col-xs-4">
                 presence: <span id="presence-value"></span>
             </div>
+
+            <div id="wc-tune">
+                <audio name="player" id="player" src="/assets/mp3/wc_tune.mp3" controls></audio>
+            </div>
         </div>
 
 	</div>
@@ -51,6 +55,7 @@
 			console.log('I Agree');
 			document.getElementById('step-2').style.display = 'none';
 			document.getElementById('step-3').style.display = 'block';
+            document.getElementById('player').play()
 		}
 
 		socket.on('connect', function (data) {
