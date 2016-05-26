@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Smart WC</title>
 	 <link href="http://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 	 <link href="/assets/css/style.css" rel="stylesheet">
 </head>
@@ -10,7 +10,7 @@
 <div content-fluid>
 	<div class="row">
 
-		<div id="step-1" class="col-xs-12">
+		<div id="step-1" class="col-xs-12 text-center hidden">
 			<img src="/assets/img/logo.png">
             <div id="step-1-1">
                 <h2>Remember to wash your hands before you leave.</h2>
@@ -21,8 +21,13 @@
 		</div>
 
 		<div id="step-2" class="col-xs-12">
-			<img src="http://172.16.39.100:8000/frame.jpg">
-            <a href="javascript:IAgree();">I AGREE</a>
+			<div id="loading">
+				<h1>Detecting user</h1>
+			</div>
+			<div class="">
+				<img src="http://172.16.39.100:8000/frame.jpg">
+	            <a href="javascript:IAgree();">I AGREE</a>
+			</div>
 		</div>
 
         <div id="step-3">
@@ -46,7 +51,6 @@
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.6/socket.io.js"></script>
 	<script>
-
 		var socket = io.connect('http://localhost:3030');
 
 		var model = {"gas":null, "moisture": null, "presence": null};
@@ -59,6 +63,7 @@
 
 		var IAgree = function() {
 			console.log('I Agree');
+			document.getElementById('step-1').style.display = 'none';
 			document.getElementById('step-2').style.display = 'none';
 			document.getElementById('step-3').style.display = 'block';
             document.getElementById('player').play()
