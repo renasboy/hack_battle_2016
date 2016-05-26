@@ -12,8 +12,6 @@ const appAccessKey = 'xKr2JuF7718h7Bn/6HIJ97aay3hYiLeniN9RF5RrfwA=';
 const keyPath = './devices';
 const region = 'eu-west-1';
 
-var io = require('socket.io')();
-
 var     distanceThreshold = 80,
         serverAws = {"distance":150};
 
@@ -65,12 +63,11 @@ client.on('uplink', uplink => {
 
 // Start Get Services inside toilet
     var serverAws = uplink.fields;
+
     if (serverAws['distance'] < distanceThreshold) {
         console.log(uplink.fields.distance);
         getServices.startService();
     }
-
-io.emit('updateData', true);
 
 // console.log('%s: Got uplink: %j', uplink.devEUI, uplink.fields);
 

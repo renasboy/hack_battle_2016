@@ -1,0 +1,119 @@
+body, html {
+	height: 100%;
+	width: 100%;
+}
+body * {
+	margin: 0;
+	padding: 0;
+	color: #0986fb;
+}
+a:hover {
+	text-decoration: none;
+}
+#step-1 {
+	text-align: center;
+    height: 100%;
+    min-height: 900px;
+    overflow: hidden;
+}
+#step-1 img {
+	width: 300px;
+	padding: 200px 0;
+}
+#step-1:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	z-index: -1;
+	height: 1600px;
+	opacity: 0.5;
+}
+#step-1-1:before {
+	content: '';
+	background: url('/assets/img/washing-hands.jpg') no-repeat center top;
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	z-index: -1;
+	height: 1600px;
+	opacity: 0.5;
+}
+
+h2 {
+    background-color: rgba(9, 134, 251, 0.6 );
+    color: #FFFFFF;
+    padding: 20px 0; 
+}
+
+#step-1-1 {
+    display: block;
+}
+
+#step-1-2 {
+    display: none;
+}
+
+#step-1-2:before {
+	content: '';
+	background: url('/assets/img/clean-toilet.jpg') no-repeat center top;
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	z-index: -1;
+	height: 1600px;
+	opacity: 0.5;
+}
+
+#step-2 {
+	text-align: center;
+    display: none;
+}
+
+#step-3 {
+    display: none;
+    padding-top: 100px;
+}
+
+.hidden {
+	display: none;
+}
+
+#player {
+    display: none;
+}
+
+#step-4 {
+    display: none;
+}
+
+#gas {
+	background: url('/assets/img/gas.png') no-repeat center top;
+	background-size: 60%;
+	height: 400px
+}
+#gas-value {
+	position: absolute;
+}
+
+#moisture {
+	background: url('/assets/img/pee.png') no-repeat center top;
+	background-size: 60%;
+	height: 400px
+}
+
+#moisture-value {
+
+}
+
+#presence {
+	background: url('/assets/img/hands.png') no-repeat center top;
+	background-size: 60%;
+	height: 400px
+}

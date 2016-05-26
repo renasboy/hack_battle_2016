@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Smart WC</title>
+	 <link href="http://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+	 <link href="/assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<div content-fluid>
+	<div class="row">
+
+		<div id="step-1" class="col-xs-12 text-center">
+			<img src="/assets/img/logo.png">
+            <div id="step-1-1">
+                <h2>Remember to wash your hands before you leave.</h2>
+            </div>
+            <div id="step-1-2">
+                <h2>Please try to keep our toiled clean for next users.</h2>
+            </div>
+		</div>
+
+		<div id="step-2" class="col-xs-12">
+			<div>
+				<a href="javascript:IAgree();">
+					<img src="http://172.16.39.100:8000/frame.jpg" id="user-image">
+	            	<h1>OPEN DOOR</h1>
+	            </a>
+			</div>
+		</div>
+
+        <div id="step-3">
+            <div id="gas" class="col-xs-4">
+                <span id="gas-value"></span>
+            </div>
+            <div id="moisture" class="col-xs-4">
+                <span id="moisture-value"></span>
+            </div>
+            <div id="presence" class="col-xs-4">
+                <span id="presence-value"></span>
+            </div>
+
+            <div id="wc-tune">
+                <audio name="player" id="player" src="/assets/mp3/wc_tune.mp3" controls></audio>
+            </div>
+
+            <a href="javascript:LeaveWC()">LEAVE WC</a>
+        </div>
+
+        <div id="step-4">
+            RESULTS
+        </div>
+
+	</div>
+</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.6/socket.io.js"></script>
+	<script>
+
+		var socket = io.connect('http://localhost:3030');
+
+		var model = {"gas":32, "moisture": 231, "presence": true};
+
+        var step11 = 'none';
+        var step12 = 'block';
+        var interval = setInterval(function () {
+			document.getElementById('step-1-1').style.display = step11;
+			document.getElementById('step-1-2').style.display = step12;
+            toggle = step11;
+            step11 = step12;
+            step12 = toggle;
+        }, 3000);
+
+		var updateUserStatus = function() {
+			document.getElementById('gas-value').innerHTML = model['gas'];
+			document.getElementById('moisture-value').innerHTML = model['moisture'];
+			document.getElementById('presence-value').innerHTML = model['presence'];
+		}
+
+		var IAgree = function() {
+			console.log('I Agree');
+			document.getElementById('step-1').style.display = 'none';
+			document.getElementById('step-2').style.display = 'none';
+			document.getElementById('step-3').style.display = 'block';
+            document.getElementById('player').play()
+		}
+
+		var LeaveWC = function() {
+			console.log('Leave WC');
+			document.getElementById('step-3').style.display = 'none';
+			document.getElementById('step-4').style.display = 'block';
+            document.getElementById('player').pause()
+		}
+
+		socket.on('connect', function (data) {
+			console.log('connected');
+		});
+
+		socket.on('closeEnough', function(data) {
+			console.log('Its close enough');
+			document.getElementById('step-1').style.display = 'none';
+			document.getElementById('step-2').style.display = 'block';
+		});
+
+		socket.on('updateGas', function(data) {
+			model['gas']= data;
+			console.log(model['gas']);
+			updateUserStatus();
+		});
+		socket.on('updateMoisture', function(data) {
+			model['moisture'] = data;
+			console.log("moisture: ",model['moisture']);
+			updateUserStatus();
+		});
+		socket.on('updatePresence', function(data) {
+			model['presence'] = data;
+			console.log("presence: ", model['presence']);
+			updateUserStatus();
+		});
+
+		socket.on('disconnect' , function() {
+			socket.emit('updateUserStatus', "disconect");
+		});
+
+		var mock = function () {
+
+		}
+
+		var gas = document.getElementById("gas-value");
+		gas.style.transform = "rotate(7deg)";
+
+
+	</script>
+
+</body>
+</html>

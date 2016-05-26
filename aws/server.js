@@ -16,7 +16,8 @@ var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 
-// app.use(express.static(__dirname + '/bower_components'));  
+
+
 app.get('/', function(req, res, next) {  
     res.sendFile(__dirname + '/index.html');
 });
@@ -24,13 +25,14 @@ app.get('/', function(req, res, next) {
 
 server.listen(3030);
 
+io.emit('updateUser', 'true');
 
 io.on('connection', function(client) {  
     console.log('Client connected...');
 });
 
-io.on('userInfo', function(userInfo) {
-  console.log(userInfo);
+io.on('userInfo', function(data) {
+  console.log(data);
 });
 
 // var getData = function(data) {
