@@ -6,19 +6,17 @@ Hack Battle 2016
 Improve your most private experience when you are off home
 
 #Reasons
-    1. Strong perfum smell or Strong stink
-    2. Dirty floor
-    3. Dirty toiled seat
-    4. Dirty toiled vase
-    5. Toiled seat always up
-    6. Washing your hands is good for you and for your frineds
-    7. People forcing the door handle when you are concentrating on your shit
-    8. Knowing who is using before gives you a chance to avoid any inconvenience
-    8. Maintenace is cheeper when users keep it clean
+    1. Strong perfum smell or even worst strong stink
+    2. Dirty floor and dirty vase or even worst wet toiled seat
+    3. Toiled seat always up
+    4. Washing your hands is healthy
+    5. Knowing who is using before gives you a chance to avoid any inconvenience
+    6. Maintenace is cheeper when users keep it clean
+    7. Sometimes status is unclear if its busy or free
 
 #Flow
-    1. WC is empty, closed, door dislays users rankings and some YAY images
-    2. Ultrasonic sensor in the door detects possible user
+    1. WC is empty, closed, door dislays users rankings and YAY images as screensaver
+    2. Ultrasonic sensor in the door detects possible user approximation
     3. Camera detects face and take picture which is shown on screen
     4. Face recognition detects user as known user or new user
     5. New user gets presented with accept terms while opening door
