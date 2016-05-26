@@ -96,20 +96,6 @@
             }
         };
 
-
-		var updateUserStatus = function() {
-
-			var rotateValue = model['gas'];
-			console.log(rotateValue);
-        	rotate = "rotate("+rotateValue+"deg)";
-        	gas.style.transform = rotate;
-
-			moisture.innerHTML = model['moisture'];
-			if (presence === true) {
-				presence.style.backgroundImage = "url('hands.png')";
-			}
-		}
-
 		var IAgree = function() {
 			console.log('I Agree');
 			startPresence();
@@ -137,44 +123,28 @@
 		});
 
 		socket.on('updateGas', function(data) {
-			model['gas']= data;
+			model['gas'] = data;
 			console.log(model['gas']);
-			updateUserStatus();
+            if (model['gas'] > 55) {
+                rotate = "rotate(80deg)";
+                gas.style.transform = rotate;
+            }
 		});
 		socket.on('updateMoisture', function(data) {
 			model['moisture'] = data;
 			console.log("moisture: ",model['moisture']);
-			updateUserStatus();
+            if (model['moisture'] < 800) {
+                moisture.innerHTML = model['moisture'];
+                moisture.style.height = '80px'
+            }
 		});
 		socket.on('updatePresence', function(data) {
 			model['presence'] = data;
 			console.log("presence: ", model['presence']);
-			updateUserStatus();
+			if (model['presence'] < 10) {
+				presence.style.backgroundImage = "url('hands.png')";
+			}
 		});
-
-		socket.on('disconnect' , function() {
-			socket.emit('updateUserStatus', "disconect");
-		});
-
-		var getRamdon = function (max, min){
-			return Math.random() * (max - min) + min;
-		}
-
-
-
-        var intervalMoisture = setInterval(function () {
-        	height = getRamdon(10, 90)+"px";
-        	moisture.style.height = height;
-        	moisture.innerHTML = model['moisture'];
-        }, 500);
-
-
-  //       var intervalGas = setInterval(function () {
-  //       	rotate = "rotate("+getRamdon(-30, 30)+"deg)";
-  //       	gas.style.transform = rotate;
-  //       }, 600);
-		// // GAS
-
 
         var startPresence = function(){
 	        var intervalPresence = setInterval(function () {
