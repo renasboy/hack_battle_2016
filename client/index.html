@@ -5,7 +5,7 @@
 	 <link href="http://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 	 <link href="/assets/css/style.css" rel="stylesheet">
 </head>
-<body>
+<body onkeypress="return myKeyPress(event)">
 
 <div content-fluid>
 	<div class="row">
@@ -42,7 +42,10 @@
 
             <div id="wc-tune">
                 <audio name="player" id="player" src="/assets/mp3/wc_tune.mp3" controls></audio>
+                <audio name="pee_player" id="pee-player" src="/assets/mp3/pee_noise.mp3" controls></audio>
+                <audio name="fart_player" id="fart-player" src="/assets/mp3/fart_noise.mp3" controls></audio>
             </div>
+
 
             <a href="javascript:LeaveWC()">LEAVE WC</a>
         </div>
@@ -70,6 +73,18 @@
             step11 = step12;
             step12 = toggle;
         }, 3000);
+
+        document.onkeypress = function(evt) {
+            evt = evt || window.event;
+            var charCode = evt.keyCode || evt.which;
+            var charStr = String.fromCharCode(charCode);
+            if (charStr == 'p') {
+                document.getElementById('pee-player').play()
+            }
+            else if (charStr == 'f') {
+                document.getElementById('fart-player').play()
+            }
+        };
 
 		var updateUserStatus = function() {
 			document.getElementById('gas-value').innerHTML = model['gas'];
