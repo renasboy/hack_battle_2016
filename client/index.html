@@ -18,6 +18,12 @@
             <div id="step-1-2">
                 <h2>Please try to keep our toiled clean for next users.</h2>
             </div>
+            <div id="step-1-3">
+                <h2>Remember to wash your hands before you leave.</h2>
+            </div>
+            <div id="step-1-4">
+                <h2>Please try to keep our toiled clean for next users.</h2>
+            </div>
 		</div>
 
 		<div id="step-2" class="col-xs-12">
@@ -70,14 +76,17 @@
 
 		var model = {"gas":32, "moisture": 231, "presence": 100};
 
-        var step11 = 'none';
-        var step12 = 'block';
+        var cycle = 1;
         var interval = setInterval(function () {
-			document.getElementById('step-1-1').style.display = step11;
-			document.getElementById('step-1-2').style.display = step12;
-            toggle = step11;
-            step11 = step12;
-            step12 = toggle;
+            cycle++;
+			document.getElementById('step-1-1').style.display = 'none';
+			document.getElementById('step-1-2').style.display = 'none';
+			document.getElementById('step-1-3').style.display = 'none';
+			document.getElementById('step-1-4').style.display = 'none';
+			document.getElementById('step-1-' + cycle).style.display = 'block';
+            if (cycle >= 4) {
+                cycle = 1;
+            }
         }, 3000);
 
 		var gas = document.getElementById("gas-value");
