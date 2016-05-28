@@ -40,4 +40,5 @@ Original Presentation youtube: https://youtu.be/ELEpWz0t6zI
 
 Original Presentation we transfer: https://www.wetransfer.com/downloads/08c56b391429a30c96ee1620aa85edb920160527121306/de063c87aaee95491247dbc542bffc6e20160527121306/970b39
 
+Presentation on TNW Stage: http://livestream.com/accounts/5208674/events/5377088/videos/124250431
 Presentation on TNW Stage: http://tnw.online/?ch=4
