@@ -34,12 +34,10 @@ Improve your most private experience when you are off home
 
 #Links
 
-Interview
-https://youtu.be/GOqzCT-LEK0
+Interview: https://youtu.be/GOqzCT-LEK0
 
-Original Presentation
-https://youtu.be/ELEpWz0t6zl
-https://www.wetransfer.com/downloads/08c56b391429a30c96ee1620aa85edb920160527121306/de063c87aaee95491247dbc542bffc6e20160527121306/970b39
+Original Presentation youtube: https://youtu.be/ELEpWz0t6zI
 
-Presentation on TNW Stage
-http://tnw.online/?ch=4
+Original Presentation we transfer: https://www.wetransfer.com/downloads/08c56b391429a30c96ee1620aa85edb920160527121306/de063c87aaee95491247dbc542bffc6e20160527121306/970b39
+
+Presentation on TNW Stage: http://tnw.online/?ch=4
