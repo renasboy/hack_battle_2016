@@ -69,14 +69,18 @@
     </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.6/socket.io.js"></script>
+<script src="/assets/js/socket.io.min.js"></script>
 <script>
 
     var socket = io.connect('http://localhost:3030');
 
-    var model = {"gas": 32, "moisture": 231, "presence": 100};
+    var model = {
+            "gas": 32,
+            "moisture": 231,
+            "presence": 100
+        },
+    cycle = 1;
 
-    var cycle = 1;
     var interval = setInterval(function () {
         cycle++;
         document.getElementById('step-1-1').style.display = 'none';
@@ -107,18 +111,18 @@
 
     var IAgree = function () {
         console.log('I Agree');
-        startPresence();
+        clearInterval(interval);
         document.getElementById('step-1').style.display = 'none';
         document.getElementById('step-2').style.display = 'none';
         document.getElementById('step-3').style.display = 'block';
-        document.getElementById('player').play()
+        document.getElementById('player').play();
     }
 
     var LeaveWC = function () {
         console.log('Leave WC');
         document.getElementById('step-3').style.display = 'none';
         document.getElementById('step-4').style.display = 'block';
-        document.getElementById('player').pause()
+        document.getElementById('player').pause();
     }
 
     socket.on('connect', function (data) {
@@ -144,7 +148,7 @@
         console.log("moisture: ", model['moisture']);
         if (model['moisture'] < 800) {
             moisture.innerHTML = model['moisture'];
-            moisture.style.height = '80px'
+            moisture.style.height = '80px';
         }
     });
     socket.on('updatePresence', function (data) {
@@ -154,14 +158,6 @@
             presence.style.backgroundImage = "url('hands.png')";
         }
     });
-
-    var startPresence = function () {
-        var intervalPresence = setInterval(function () {
-            presence.style.backgroundImage = "url('/assets/img/hands.png')";
-            // clearInterval(intervalGas);
-            clearInterval(intervalMoisture);
-        }, 4000);
-    }
 
     document.onkeypress = function (evt) {
         evt = evt || window.event;
@@ -174,7 +170,6 @@
             document.getElementById('fart-player').play()
         }
     };
-
 </script>
 
 </body>
