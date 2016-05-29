@@ -42,3 +42,5 @@ Original Presentation we transfer: https://www.wetransfer.com/downloads/08c56b39
 
 Presentation on TNW Stage: http://livestream.com/accounts/5208674/events/5377088/videos/124250431
 Presentation on TNW Stage: http://tnw.online/?ch=4
+
+The Next Web Article: http://thenextweb.com/insider/2016/05/27/10-brilliant-iot-hacks-tnw-europe-2016-hack-battle/#gref
