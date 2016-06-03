@@ -1,40 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Smart WC</title>
-	 <link href="http://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-	 <link href="/assets/css/style.css" rel="stylesheet">
+    <title>Smart WC</title>
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/style.css" rel="stylesheet">
 </head>
-<body onkeypress="return myKeyPress(event)">
+<body>
 
 <div content-fluid>
-	<div class="row">
+    <div class="row">
 
-		<div id="step-1" class="col-xs-12 text-center">
-			<img src="/assets/img/logo.png">
+        <div id="step-1" class="col-xs-12 text-center">
+            <img src="/assets/img/logo.png">
             <div id="step-1-1">
                 <h2>Remember to wash your hands before you leave.</h2>
             </div>
             <div id="step-1-2">
-                <h2>Please try to keep our toiled clean for next users.</h2>
+                <h2>Please try to keep our toilet clean for next users.</h2>
             </div>
-		</div>
+            <div id="step-1-3">
+                <h2>Remember to wash your hands before you leave.</h2>
+            </div>
+            <div id="step-1-4">
+                <h2>Please try to keep our toilet clean for next users.</h2>
+            </div>
+        </div>
 
-		<div id="step-2" class="col-xs-12">
-			<div>
-				<a href="javascript:IAgree();">
-					<img src="http://172.16.39.100:8000/frame.jpg" id="user-image">
-	            	<h1>OPEN DOOR</h1>
-	            </a>
-			</div>
-		</div>
+        <div id="step-2" class="col-xs-12">
+            <div>
+                <a href="javascript:IAgree();">
+                    <img src="/assets/img/joia.jpg" id="user-image">
+                    <!-- <img src="http://172.16.39.100:8000/frame.jpg" id="user-image"> -->
+                    <img src="/assets/img/opendoor.jpg" width="200px">
+                    <h1>OPEN DOOR</h1>
+                </a>
+            </div>
+        </div>
 
         <div id="step-3">
-            <div id="gas" class="col-xs-4">
-                <span id="gas-value"></span>
-            </div>
             <div id="moisture" class="col-xs-4">
                 <span id="moisture-value"></span>
+            </div>
+            <div id="gas" class="col-xs-4">
+                <span id="gas-value">
+                	<img src="/assets/img/pointer.png">
+                </span>
             </div>
             <div id="presence" class="col-xs-4">
                 <span id="presence-value"></span>
@@ -46,106 +56,121 @@
                 <audio name="fart_player" id="fart-player" src="/assets/mp3/fart_noise.mp3" controls></audio>
             </div>
 
+            <div id="leave-wc" class="text-center">
+                <a href="javascript:LeaveWC()">LEAVE WC</a>
+            </div>
 
-            <a href="javascript:LeaveWC()">LEAVE WC</a>
         </div>
 
-        <div id="step-4">
-            RESULTS
+        <div id="step-4" class="text-center">
+            <img src="/assets/img/results.png">
         </div>
 
-	</div>
+    </div>
 </div>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.6/socket.io.js"></script>
-	<script>
+<script src="/assets/js/socket.io.min.js"></script>
+<script>
 
-		var socket = io.connect('http://localhost:3030');
+    var socket = io.connect('http://localhost:3030');
 
-		var model = {"gas":32, "moisture": 231, "presence": true};
+    var model = {
+            "gas": 32,
+            "moisture": 231,
+            "presence": 100
+        },
+    cycle = 1;
 
-        var step11 = 'none';
-        var step12 = 'block';
-        var interval = setInterval(function () {
-			document.getElementById('step-1-1').style.display = step11;
-			document.getElementById('step-1-2').style.display = step12;
-            toggle = step11;
-            step11 = step12;
-            step12 = toggle;
-        }, 3000);
+    var interval = setInterval(function () {
+        cycle++;
+        document.getElementById('step-1-1').style.display = 'none';
+        document.getElementById('step-1-2').style.display = 'none';
+        document.getElementById('step-1-3').style.display = 'none';
+        document.getElementById('step-1-4').style.display = 'none';
+        document.getElementById('step-1-' + cycle).style.display = 'block';
+        if (cycle >= 4) {
+            cycle = 1;
+        }
+    }, 3000);
 
-        document.onkeypress = function(evt) {
-            evt = evt || window.event;
-            var charCode = evt.keyCode || evt.which;
-            var charStr = String.fromCharCode(charCode);
-            if (charStr == 'p') {
-                document.getElementById('pee-player').play()
-            }
-            else if (charStr == 'f') {
-                document.getElementById('fart-player').play()
-            }
-        };
+    var gas = document.getElementById("gas-value");
+    var moisture = document.getElementById("moisture-value");
+    var presence = document.getElementById('presence');
 
-		var updateUserStatus = function() {
-			document.getElementById('gas-value').innerHTML = model['gas'];
-			document.getElementById('moisture-value').innerHTML = model['moisture'];
-			document.getElementById('presence-value').innerHTML = model['presence'];
-		}
+    document.onkeypress = function (evt) {
+        evt = evt || window.event;
+        var charCode = evt.keyCode || evt.which;
+        var charStr = String.fromCharCode(charCode);
+        if (charStr == 'p') {
+            document.getElementById('pee-player').play()
+        }
+        else if (charStr == 'f') {
+            document.getElementById('fart-player').play()
+        }
+    };
 
-		var IAgree = function() {
-			console.log('I Agree');
-			document.getElementById('step-1').style.display = 'none';
-			document.getElementById('step-2').style.display = 'none';
-			document.getElementById('step-3').style.display = 'block';
-            document.getElementById('player').play()
-		}
+    var IAgree = function () {
+        console.log('I Agree');
+        clearInterval(interval);
+        document.getElementById('step-1').style.display = 'none';
+        document.getElementById('step-2').style.display = 'none';
+        document.getElementById('step-3').style.display = 'block';
+        document.getElementById('player').play();
+    }
 
-		var LeaveWC = function() {
-			console.log('Leave WC');
-			document.getElementById('step-3').style.display = 'none';
-			document.getElementById('step-4').style.display = 'block';
-            document.getElementById('player').pause()
-		}
+    var LeaveWC = function () {
+        console.log('Leave WC');
+        document.getElementById('step-3').style.display = 'none';
+        document.getElementById('step-4').style.display = 'block';
+        document.getElementById('player').pause();
+    }
 
-		socket.on('connect', function (data) {
-			console.log('connected');
-		});
+    socket.on('connect', function (data) {
+        console.log('connected');
+    });
 
-		socket.on('closeEnough', function(data) {
-			console.log('Its close enough');
-			document.getElementById('step-1').style.display = 'none';
-			document.getElementById('step-2').style.display = 'block';
-		});
+    socket.on('closeEnough', function (data) {
+        console.log('Its close enough');
+        document.getElementById('step-1').style.display = 'none';
+        document.getElementById('step-2').style.display = 'block';
+    });
 
-		socket.on('updateGas', function(data) {
-			model['gas']= data;
-			console.log(model['gas']);
-			updateUserStatus();
-		});
-		socket.on('updateMoisture', function(data) {
-			model['moisture'] = data;
-			console.log("moisture: ",model['moisture']);
-			updateUserStatus();
-		});
-		socket.on('updatePresence', function(data) {
-			model['presence'] = data;
-			console.log("presence: ", model['presence']);
-			updateUserStatus();
-		});
+    socket.on('updateGas', function (data) {
+        model['gas'] = data;
+        console.log(model['gas']);
+        if (model['gas'] > 55) {
+            rotate = "rotate(80deg)";
+            gas.style.transform = rotate;
+        }
+    });
+    socket.on('updateMoisture', function (data) {
+        model['moisture'] = data;
+        console.log("moisture: ", model['moisture']);
+        if (model['moisture'] < 800) {
+            moisture.innerHTML = model['moisture'];
+            moisture.style.height = '80px';
+        }
+    });
+    socket.on('updatePresence', function (data) {
+        model['presence'] = data;
+        console.log("presence: ", model['presence']);
+        if (model['presence'] < 10) {
+            presence.style.backgroundImage = "url('hands.png')";
+        }
+    });
 
-		socket.on('disconnect' , function() {
-			socket.emit('updateUserStatus', "disconect");
-		});
-
-		var mock = function () {
-
-		}
-
-		var gas = document.getElementById("gas-value");
-		gas.style.transform = "rotate(7deg)";
-
-
-	</script>
+    document.onkeypress = function (evt) {
+        evt = evt || window.event;
+        var charCode = evt.keyCode || evt.which;
+        var charStr = String.fromCharCode(charCode);
+        if (charStr == 'p') {
+            document.getElementById('pee-player').play()
+        }
+        else if (charStr == 'f') {
+            document.getElementById('fart-player').play()
+        }
+    };
+</script>
 
 </body>
 </html>

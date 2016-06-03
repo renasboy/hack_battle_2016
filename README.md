@@ -2,7 +2,6 @@
 Hack Battle 2016
 
 # Smart WC
-
 Improve your most private experience when you are off home
 
 #Reasons
@@ -32,3 +31,16 @@ Improve your most private experience when you are off home
     10. When user leaves the toiled another photo is taken and compared with the photo taken before the use
     11. After every session an evaluation of usage is generated and the last user ranking is updated
     12. User information might show on door screen, with dirtyness and cleanliness ranks, health tips
+
+#Links
+
+Interview: https://youtu.be/GOqzCT-LEK0
+
+Original Presentation youtube: https://youtu.be/ELEpWz0t6zI
+
+Original Presentation we transfer: https://www.wetransfer.com/downloads/08c56b391429a30c96ee1620aa85edb920160527121306/de063c87aaee95491247dbc542bffc6e20160527121306/970b39
+
+Presentation on TNW Stage: http://livestream.com/accounts/5208674/events/5377088/videos/124250431
+Presentation on TNW Stage: http://tnw.online/?ch=4
+
+The Next Web Article: http://thenextweb.com/insider/2016/05/27/10-brilliant-iot-hacks-tnw-europe-2016-hack-battle/#gref
